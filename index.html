@@ -607,6 +607,21 @@ body{overflow-x:hidden}
     s.connect(bp);bp.connect(am);am.connect(penv);penv.connect(pbus);
     s.start(t);s.stop(t+dur+.06);lfo.start(t);lfo.stop(t+dur+.06);
   }
+  /* 실제 파쇄기 녹음 파일 — 재생 실패하면 합성음으로 폴백 */
+  var shredFile=null;
+  try{shredFile=new Audio("./shredder.mp3");shredFile.preload="auto";shredFile.volume=.9;}catch(e){shredFile=null;}
+  function playShred(){
+    if(!soundOn)return;
+    if(shredFile){
+      try{
+        shredFile.currentTime=0;
+        var pr=shredFile.play();
+        if(pr&&pr.catch)pr.catch(function(){shredSnd();});
+        return;
+      }catch(e){}
+    }
+    shredSnd();
+  }
   /* KO 마무리: 유리 깨짐 대신 묵직한 저음 */
   function koSnd(){
     var c=pAudio();if(!c)return;var t=c.currentTime;
@@ -787,7 +802,7 @@ body{overflow-x:hidden}
     if(!text){msg.textContent="먼저 하고 싶은 말을 써 주세요.";return;}
     var w=rant.clientWidth,n=16,sw=w/n;
     stage.innerHTML="";stage.classList.remove("emo");stage.style.display="block";rant.style.display="none";msg.textContent="";
-    shredSnd();
+    playShred();
     stage.style.width=w+"px";
     for(var i=0;i<n;i++){
       var s=document.createElement("div");s.className="strip";s.style.left=(i*sw)+"px";s.style.width=(sw+.5)+"px";
@@ -854,7 +869,7 @@ body{overflow-x:hidden}
 
   /* sound toggle */
   var snd=document.getElementById("snd");
-  snd.addEventListener("click",function(){soundOn=!soundOn;snd.setAttribute("aria-pressed",soundOn);snd.textContent=soundOn?"🔊 소리 켜짐":"🔇 소리 꺼짐";});
+  snd.addEventListener("click",function(){soundOn=!soundOn;snd.setAttribute("aria-pressed",soundOn);snd.textContent=soundOn?"🔊 소리 켜짐":"🔇 소리 꺼짐";if(!soundOn&&shredFile){try{shredFile.pause();}catch(e){}}});
 
   /* weapons on paper */
   var tgt=document.getElementById("target"),wrow=document.getElementById("wrow"),wb=[].slice.call(wrow.querySelectorAll("button")),tw=null,tHp=100,tOn=false,tFlame=null,tx=0,ty=0;
