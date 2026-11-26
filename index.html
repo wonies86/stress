@@ -123,7 +123,8 @@ body{overflow-x:hidden}
 .fire{border-radius:50%;background:radial-gradient(circle,#fff8d0 0 4%,#ffd24d 11%,#ff9a1e 26%,#ef5310 46%,#a82708 63%,rgba(120,25,0,0) 88%);box-shadow:0 0 46px rgba(255,110,10,.55);will-change:transform,opacity}
 .core{border-radius:50%;background:radial-gradient(circle,#fff 0 34%,#fff6c0 54%,rgba(255,220,120,0) 76%);box-shadow:0 0 36px 8px rgba(255,225,150,.8);will-change:transform,opacity}
 .burst{border-radius:50%;background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,252,225,.98) 0 3deg,rgba(255,214,90,.7) 3deg 5.5deg,rgba(255,140,30,0) 5.5deg 15deg);-webkit-mask-image:radial-gradient(circle,#000 0 40%,rgba(0,0,0,.6) 60%,transparent 82%);mask-image:radial-gradient(circle,#000 0 40%,rgba(0,0,0,.6) 60%,transparent 82%);will-change:transform,opacity}
-.scorch{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 50% 50%,#0d1620 0 24%,rgba(46,32,22,.85) 38%,rgba(70,48,30,.4) 58%,rgba(40,26,18,0) 72%),radial-gradient(circle at 32% 64%,rgba(35,24,16,.55),transparent 22%),radial-gradient(circle at 68% 36%,rgba(35,24,16,.5),transparent 20%)}
+.scorch{position:absolute;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 50% 50%,#0d1620 0 26%,rgba(46,32,22,.88) 36%,rgba(96,64,38,.45) 50%,rgba(50,34,22,0) 64%),radial-gradient(circle at 32% 64%,rgba(35,24,16,.55),transparent 22%),radial-gradient(circle at 68% 36%,rgba(35,24,16,.5),transparent 20%);animation:scorfade 3.6s ease-out forwards}
+@keyframes scorfade{0%{opacity:1}65%{opacity:.8}100%{opacity:0}}
 .spark{border-radius:2px;will-change:transform,opacity}
 .shard{background:#f8fbfd;border:1px solid #7d8c99;border-radius:1px;box-shadow:0 1px 3px rgba(20,30,40,.25);will-change:transform,opacity}
 .ltr{font-family:"Black Han Sans","Noto Sans KR",sans-serif;color:#0f1c28;text-shadow:0 1px 0 #fff,0 2px 6px rgba(0,0,0,.35);white-space:pre;will-change:transform,opacity}
@@ -131,7 +132,7 @@ body{overflow-x:hidden}
 .fxflash{left:0;top:0;width:100%;height:100%;will-change:opacity}
 .wrap.quake{animation:quake .55s cubic-bezier(.36,.07,.19,.97) both;will-change:transform}
 @keyframes quake{0%{transform:translate(0,0) rotate(0)}8%{transform:translate(-10px,6px) rotate(-.6deg)}17%{transform:translate(9px,-7px) rotate(.5deg)}27%{transform:translate(-8px,5px) rotate(-.35deg)}38%{transform:translate(7px,-4px)}50%{transform:translate(-5px,4px)}63%{transform:translate(4px,-3px)}76%{transform:translate(-3px,2px)}88%{transform:translate(2px,-1px)}100%{transform:translate(0,0)}}
-@media (prefers-reduced-motion:reduce){.swingL,.swingR,.pop,.fall{animation-duration:.01s}.rage{animation:none}.ch{transition-duration:.01s}.wrap.quake{animation:none}}
+@media (prefers-reduced-motion:reduce){.swingL,.swingR,.pop,.fall{animation-duration:.01s}.rage{animation:none}.ch{transition-duration:.01s}.wrap.quake{animation:none}.scorch{animation-duration:1.2s}}
 </style>
 </head>
 <body>
